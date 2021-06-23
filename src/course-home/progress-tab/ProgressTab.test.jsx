@@ -1034,4 +1034,22 @@ describe('Progress Tab', () => {
       expect(screen.queryByTestId('certificate-status-component')).not.toBeInTheDocument();
     });
   });
+
+  describe('Viewing progress page of other students by changing url', () => {
+    it('Changing the url changes the header', async () => {
+      const axiosMockOther = new MockAdapter(getAuthenticatedHttpClient());
+      const courseMetadata = Factory.build('courseHomeMetadata', { id: courseId }, {});
+      axiosMockOther.onGet(courseMetadataUrl).reply(200, courseMetadata);
+
+      const otherUserId = 10;
+      const progressUrlWithId = `${getConfig().LMS_BASE_URL}/api/course_home/v1/progress/${courseId}/${otherUserId}/`;
+      const progressTabData = Factory.build('progressTabData', { username: 'otherstudent' });
+      axiosMockOther.onGet(progressUrlWithId).reply(200, progressTabData);
+
+      await executeThunk(thunks.fetchProgressTab(courseId, otherUserId), store.dispatch);
+      await act(async () => render(<ProgressTab />, { store }));
+
+      expect(screen.getByText('Course progress for otherstudent')).toBeInTheDocument();
+    });
+  });
 });

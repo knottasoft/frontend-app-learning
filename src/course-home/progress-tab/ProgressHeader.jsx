@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { FormattedMessage, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Button } from '@edx/paragon';
 
 import { useModel } from '../../generic/model-store';
@@ -12,16 +12,33 @@ import messages from './messages';
 function ProgressHeader({ intl }) {
   const {
     courseId,
+    targetUserId,
   } = useSelector(state => state.courseHome);
 
-  const { administrator } = getAuthenticatedUser();
+  const { administrator, userId } = getAuthenticatedUser();
 
-  const { studioUrl } = useModel('progress', courseId);
+  const { studioUrl, username } = useModel('progress', courseId);
+
+  const viewingOtherStudentsProgressPage = (targetUserId && targetUserId !== userId);
 
   return (
     <>
       <div className="row w-100 m-0 mt-3 mb-4 justify-content-between">
-        <h1>{intl.formatMessage(messages.progressHeader)}</h1>
+        {viewingOtherStudentsProgressPage && (
+          <h1>
+            <FormattedMessage
+              id="progress.header.differentUser"
+              defaultMessage="Course progress for {username}"
+              description="Header when displaying the progress for a different user"
+              values={{
+                username,
+              }}
+            />
+          </h1>
+        )}
+        {!viewingOtherStudentsProgressPage && (
+          <h1>{intl.formatMessage(messages.progressHeader)}</h1>
+        )}
         {administrator && studioUrl && (
           <Button variant="outline-primary" size="sm" className="align-self-center" href={studioUrl}>
             {intl.formatMessage(messages.studioLink)}

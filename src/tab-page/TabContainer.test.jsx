@@ -42,4 +42,27 @@ describe('Tab Container', () => {
       .toHaveBeenCalledWith(courseId);
     expect(screen.getByTestId('TabPage')).toBeInTheDocument();
   });
+
+  it('Should handle passing in a targetUserId', () => {
+    history.push(`/course/${courseId}/1/`);
+    const mockFetch2 = jest.fn().mockImplementation((x) => x);
+
+    const mockData2 = {
+      children: [],
+      fetch: () => mockFetch2(courseId, 1),
+      tab: 'dummy',
+      slice: 'courseware',
+    };
+
+    render(
+      <Route path="/course/:courseId/:targetUserId">
+        <TabContainer {...mockData2} />
+      </Route>,
+    );
+
+    expect(mockFetch2)
+      .toHaveBeenCalledTimes(1)
+      .toHaveBeenCalledWith(courseId, 1);
+    expect(screen.getByTestId('TabPage')).toBeInTheDocument();
+  });
 });
