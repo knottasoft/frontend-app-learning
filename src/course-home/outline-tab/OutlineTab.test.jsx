@@ -694,6 +694,15 @@ describe('Outline Tab', () => {
         expect(screen.queryByText('Verify your identity to earn a certificate!')).toBeInTheDocument();
       });
     });
+
+    describe('Scheduled Content Alert', () => {
+      it('appears correctly', async () => {
+        setMetadata({ is_enrolled: true });
+        setTabData({ has_sceduled_content: true });
+        await fetchAndRender();
+        expect(screen.queryByText('More content is coming soon!'));
+      });
+    });
   });
 
   describe('Certificate (web) Complete Alert', () => {
