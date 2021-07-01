@@ -9,7 +9,7 @@ import {
   postIntegritySignature,
 } from './api';
 import {
-  updateModel, addModel, updateModelsMap, addModelsMap, updateModels,
+  updateModel, addModel, addModels, updateModelsMap, addModelsMap, updateModels,
 } from '../../generic/model-store';
 import {
   setsSpecialExamsEnabled,
@@ -59,7 +59,7 @@ export function fetchCourse(courseId) {
 
       if (courseBlocksResult.status === 'fulfilled') {
         const {
-          courses, sections, sequences, units,
+          courses, sections, sequences,
         } = courseBlocksResult.value;
 
         // Filter the data we get from the Course Blocks API using the data we
@@ -93,14 +93,10 @@ export function fetchCourse(courseId) {
           modelType: 'sections',
           modelsMap: filteredSections,
         }));
-        // We update for sequences and units because the sequence metadata may have come back first.
-        dispatch(updateModelsMap({
+        // We update for sequences because fetchSequence may have already finished.
+        dispatch(updateModels({
           modelType: 'sequences',
           modelsMap: filteredSequences,
-        }));
-        dispatch(updateModelsMap({
-          modelType: 'units',
-          modelsMap: units,
         }));
       }
 
@@ -149,11 +145,12 @@ export function fetchSequence(courseId, sequenceId) {
         );
         dispatch(fetchSequenceFailure({ sequenceId }));
       } else {
+        // We update for sequences because fetchCourse may have already finished.
         dispatch(updateModel({
           modelType: 'sequences',
           model: sequence,
         }));
-        dispatch(updateModels({
+        dispatch(addModels({
           modelType: 'units',
           models: units,
         }));

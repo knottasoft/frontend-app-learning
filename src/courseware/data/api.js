@@ -47,7 +47,7 @@ export function normalizeBlocks(courseId, blocks) {
     }
   });
 
-  // Next go through each list and use their child lists to decorate those children with a
+  // Next go through courses/sections and use their child lists to decorate those children with a
   // reference back to their parent.
   Object.values(models.courses).forEach(course => {
     if (Array.isArray(course.sectionIds)) {
@@ -57,7 +57,6 @@ export function normalizeBlocks(courseId, blocks) {
       });
     }
   });
-
   Object.values(models.sections).forEach(section => {
     if (Array.isArray(section.sequenceIds)) {
       section.sequenceIds.forEach(sequenceId => {
@@ -65,18 +64,6 @@ export function normalizeBlocks(courseId, blocks) {
           models.sequences[sequenceId].sectionId = section.id;
         } else {
           logInfo(`Section ${section.id} has child block ${sequenceId}, but that block is not in the list of sequences.`);
-        }
-      });
-    }
-  });
-
-  Object.values(models.sequences).forEach(sequence => {
-    if (Array.isArray(sequence.unitIds)) {
-      sequence.unitIds.forEach(unitId => {
-        if (unitId in models.units) {
-          models.units[unitId].sequenceId = sequence.id;
-        } else {
-          logInfo(`Sequence ${sequence.id} has child block ${unitId}, but that block is not in the list of units.`);
         }
       });
     }
@@ -90,7 +77,7 @@ export async function getCourseBlocks(courseId) {
   const url = new URL(`${getConfig().LMS_BASE_URL}/api/courses/v2/blocks/`);
   url.searchParams.append('course_id', courseId);
   url.searchParams.append('username', authenticatedUser ? authenticatedUser.username : '');
-  url.searchParams.append('depth', 3);
+  url.searchParams.append('depth', 2); // course, chapter (aka section), and sequential (aka subsection)
   url.searchParams.append('requested_fields', 'children,effort_activities,effort_time,show_gated_sections,graded,special_exam_info,has_scheduled_content');
 
   const { data } = await getAuthenticatedHttpClient().get(url.href, {});
