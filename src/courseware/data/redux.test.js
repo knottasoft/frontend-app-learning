@@ -26,11 +26,11 @@ describe('Data layer integration tests', () => {
   // building minimum set of api responses to test all thunks
   const courseMetadata = Factory.build('courseMetadata');
   const courseId = courseMetadata.id;
-  const { courseBlocks, unitBlocks, sequenceBlocks } = buildSimpleCourseBlocks(courseId);
+  const { courseBlocks, sequenceBlocks } = buildSimpleCourseBlocks(courseId);
   const sequenceMetadata = Factory.build(
     'sequenceMetadata',
     {},
-    { courseId, unitBlocks, sequenceBlock: sequenceBlocks[0] },
+    { courseId, sequenceBlock: sequenceBlocks[0] },
   );
   const emptyOutline = buildEmptyOutline(courseId);
   const simpleOutline = buildSimpleOutline(courseId, sequenceBlocks);
@@ -40,7 +40,7 @@ describe('Data layer integration tests', () => {
 
   const sequenceUrl = `${sequenceBaseUrl}/${sequenceMetadata.item_id}`;
   const sequenceId = sequenceBlocks[0].id;
-  const unitId = unitBlocks[0].id;
+  const unitId = sequenceMetadata.items[0].id;
 
   let store;
 
