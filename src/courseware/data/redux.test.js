@@ -159,7 +159,7 @@ describe('Data layer integration tests', () => {
     it('Should result in fetch failure if error occurs', async () => {
       axiosMock.onGet(sequenceUrl).networkError();
 
-      await executeThunk(thunks.fetchSequence(sequenceId), store.dispatch);
+      await executeThunk(thunks.fetchSequence(courseId, sequenceId), store.dispatch);
 
       expect(loggingService.logError).toHaveBeenCalled();
       expect(store.getState().courseware.sequenceStatus).toEqual('failed');
@@ -175,7 +175,7 @@ describe('Data layer integration tests', () => {
       };
       axiosMock.onGet(sequenceUrl).reply(200, sectionMetadata);
 
-      await executeThunk(thunks.fetchSequence(sequenceId), store.dispatch);
+      await executeThunk(thunks.fetchSequence(courseId, sequenceId), store.dispatch);
 
       expect(loggingService.logError).toHaveBeenCalled();
       expect(store.getState().courseware.sequenceStatus).toEqual('failed');
@@ -209,7 +209,7 @@ describe('Data layer integration tests', () => {
       expect(state.courseware.sequenceStatus).toEqual('loading');
       expect(state.courseware.sequenceId).toEqual(null);
 
-      await executeThunk(thunks.fetchSequence(sequenceId), store.dispatch);
+      await executeThunk(thunks.fetchSequence(courseId, sequenceId), store.dispatch);
 
       // Update our state variable again.
       state = store.getState();
@@ -240,7 +240,7 @@ describe('Data layer integration tests', () => {
       // thunks tested in this block rely on fact, that store already has
       // some info about sequence
       axiosMock.onGet(sequenceUrl).reply(200, sequenceMetadata);
-      await executeThunk(thunks.fetchSequence(sequenceMetadata.item_id), store.dispatch);
+      await executeThunk(thunks.fetchSequence(courseId, sequenceMetadata.item_id), store.dispatch);
     });
 
     describe('Test checkBlockCompletion', () => {

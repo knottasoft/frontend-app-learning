@@ -134,7 +134,7 @@ export function fetchSequence(courseId, sequenceId) {
   return async (dispatch) => {
     dispatch(fetchSequenceRequest({ sequenceId }));
     try {
-      const { sequence, units } = await getSequenceMetadata(sequenceId);
+      const { sequence, units } = await getSequenceMetadata(courseId, sequenceId);
       if (sequence.blockType !== 'sequential') {
         // Some other block types (particularly 'chapter') can be returned
         // by this API. We want to error in that case, since downstream
