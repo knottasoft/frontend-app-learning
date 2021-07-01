@@ -134,7 +134,7 @@ export function fetchCourse(courseId) {
   };
 }
 
-export function fetchSequence(sequenceId) {
+export function fetchSequence(courseId, sequenceId) {
   return async (dispatch) => {
     dispatch(fetchSequenceRequest({ sequenceId }));
     try {

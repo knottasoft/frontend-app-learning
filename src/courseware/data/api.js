@@ -8,7 +8,6 @@ export function normalizeBlocks(courseId, blocks) {
     courses: {},
     sections: {},
     sequences: {},
-    units: {},
   };
 
   Object.values(blocks).forEach(block => {
@@ -43,16 +42,8 @@ export function normalizeBlocks(courseId, blocks) {
           unitIds: block.children || [],
         };
         break;
-      case 'vertical':
-        models.units[block.id] = {
-          graded: block.graded,
-          id: block.id,
-          title: block.display_name,
-          legacyWebUrl: block.legacy_web_url,
-        };
-        break;
       default:
-        logInfo(`Unexpected course block type: ${block.type} with ID ${block.id}.  Expected block types are course, chapter, sequential, and vertical.`);
+        logInfo(`Unexpected course block type: ${block.type} with ID ${block.id}.  Expected block types are course, chapter, and sequential.`);
     }
   });
 
@@ -188,7 +179,7 @@ export async function getCourseMetadata(courseId) {
   return normalizeMetadata(data);
 }
 
-function normalizeSequenceMetadata(sequence) {
+function normalizeSequenceMetadata(courseId, sequence) {
   return {
     sequence: {
       id: sequence.item_id,
@@ -224,15 +215,16 @@ function normalizeSequenceMetadata(sequence) {
       contentType: unit.type,
       graded: unit.graded,
       containsContentTypeGatedContent: unit.contains_content_type_gated_content,
+      legacyWebUrl: `${getConfig().LMS_BASE_URL}/courses/${courseId}/jump_to/${unit.id}?experience=legacy`,
     })),
   };
 }
 
-export async function getSequenceMetadata(sequenceId) {
+export async function getSequenceMetadata(courseId, sequenceId) {
   const { data } = await getAuthenticatedHttpClient()
     .get(`${getConfig().LMS_BASE_URL}/api/courseware/sequence/${sequenceId}`, {});
 
-  return normalizeSequenceMetadata(data);
+  return normalizeSequenceMetadata(courseId, data);
 }
 
 const getSequenceHandlerUrl = (courseId, sequenceId) => `${getConfig().LMS_BASE_URL}/courses/${courseId}/xblock/${sequenceId}/handler`;

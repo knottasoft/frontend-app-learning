@@ -95,9 +95,9 @@ class CoursewareContainer extends Component {
     this.props.fetchCourse(courseId);
   });
 
-  checkFetchSequence = memoize((sequenceId) => {
+  checkFetchSequence = memoize((courseId, sequenceId) => {
     if (sequenceId) {
-      this.props.fetchSequence(sequenceId);
+      this.props.fetchSequence(courseId, sequenceId);
     }
   });
 
@@ -112,7 +112,7 @@ class CoursewareContainer extends Component {
     } = this.props;
     // Load data whenever the course or sequence ID changes.
     this.checkFetchCourse(routeCourseId);
-    this.checkFetchSequence(routeSequenceId);
+    this.checkFetchSequence(routeCourseId, routeSequenceId);
   }
 
   componentDidUpdate() {
@@ -138,7 +138,7 @@ class CoursewareContainer extends Component {
 
     // Load data whenever the course or sequence ID changes.
     this.checkFetchCourse(routeCourseId);
-    this.checkFetchSequence(routeSequenceId);
+    this.checkFetchSequence(routeCourseId, routeSequenceId);
 
     // All courseware URLs should normalize to the format /course/:courseId/:sequenceId/:unitId
     // via the series of redirection rules below.
