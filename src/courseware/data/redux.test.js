@@ -199,12 +199,7 @@ describe('Data layer integration tests', () => {
           activeUnitIndex: expect.any(Number),
         }),
       });
-      expect(state.models.units).toEqual({
-        [unitId]: expect.not.objectContaining({
-          complete: null,
-          bookmarked: expect.any(Boolean),
-        }),
-      });
+      expect(state.models).not.toHaveProperty("units");
 
       // Update our state variable again.
       state = store.getState();

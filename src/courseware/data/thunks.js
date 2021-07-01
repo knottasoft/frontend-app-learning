@@ -94,13 +94,9 @@ export function fetchCourse(courseId) {
           modelsMap: filteredSections,
         }));
         // We update for sequences because fetchSequence may have already finished.
-        dispatch(updateModels({
+        dispatch(updateModelsMap({
           modelType: 'sequences',
-          models: filteredSequences,
-        }));
-        dispatch(addModels({
-          modelType: 'units',
-          models: [],
+          modelsMap: filteredSequences,
         }));
       }
 
