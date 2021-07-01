@@ -49,10 +49,49 @@ Factory.define('courseBlocks')
 /**
  * Builds a course with a single chapter and sequence.
  */
-export function buildSimpleCourseBlocks(courseId, title = 'Demo Course', options = {}) {
+export function buildSimpleCourseBlocks(courseId, title, options = {}) {
   const sequenceBlocks = options.sequenceBlocks || [Factory.build(
     'block',
-    { type: 'sequential', display_name: 'Title of Sequence' },
+    { type: 'sequential' },
+    { courseId },
+  )];
+  const sectionBlocks = options.sectionBlocks || [Factory.build(
+    'block',
+    { type: 'chapter', children: sequenceBlocks.map(block => block.id) },
+    { courseId },
+  )];
+  const courseBlock = options.courseBlock || Factory.build(
+    'block',
+    { type: 'course', display_name: title, children: sectionBlocks.map(block => block.id) },
+    { courseId },
+  );
+  return {
+    courseBlocks: options.courseBlocks || Factory.build(
+      'courseBlocks',
+      {
+        courseId,
+        hasScheduledContent: options.hasScheduledContent || false,
+        title: 'Demo Course',
+      },
+      {
+        sequences: sequenceBlocks,
+        sections: sectionBlocks,
+        course: courseBlock,
+      },
+    ),
+    sequenceBlocks,
+    sectionBlocks,
+    courseBlock,
+  };
+}
+
+/**
+ * Builds a course with a single chapter and sequence (specifically for Course Home tests).
+ */
+export function buildMinimalCourseBlocks(courseId, title, options = {}) {
+  const sequenceBlocks = options.sequenceBlocks || [Factory.build(
+    'block',
+    { display_name: 'Title of Sequence', type: 'sequential' },
     { courseId },
   )];
   const sectionBlocks = options.sectionBlocks || [Factory.build(
@@ -76,11 +115,7 @@ export function buildSimpleCourseBlocks(courseId, title = 'Demo Course', options
   return {
     courseBlocks: options.courseBlocks || Factory.build(
       'courseBlocks',
-      {
-        courseId,
-        hasScheduledContent: options.hasScheduledContent || false,
-        title,
-      },
+      { courseId },
       {
         sequences: sequenceBlocks,
         sections: sectionBlocks,
