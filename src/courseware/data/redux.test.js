@@ -199,7 +199,7 @@ describe('Data layer integration tests', () => {
           activeUnitIndex: expect.any(Number),
         }),
       });
-      expect(state.models).not.toHaveProperty("units");
+      expect(state.models).not.toHaveProperty('units');
 
       // Update our state variable again.
       state = store.getState();

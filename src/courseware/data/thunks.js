@@ -9,7 +9,7 @@ import {
   postIntegritySignature,
 } from './api';
 import {
-  updateModel, addModel, addModels, updateModelsMap, addModelsMap, updateModels,
+  updateModel, addModel, addModels, updateModelsMap, addModelsMap,
 } from '../../generic/model-store';
 import {
   setsSpecialExamsEnabled,
