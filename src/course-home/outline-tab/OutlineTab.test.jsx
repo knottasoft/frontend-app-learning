@@ -697,10 +697,22 @@ describe('Outline Tab', () => {
 
     describe('Scheduled Content Alert', () => {
       it('appears correctly', async () => {
+        const now = new Date();
+        const { courseBlocks } = await buildMinimalCourseBlocks(courseId, 'Title', { hasScheduledContent: true });
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
         setMetadata({ is_enrolled: true });
-        setTabData({ has_sceduled_content: true });
+        setTabData({
+          course_blocks: { blocks: courseBlocks.blocks },
+          date_blocks: [
+            {
+              date_type: 'course-end-date',
+              date: tomorrow.toISOString(),
+              title: 'End',
+            },
+          ],
+        });
         await fetchAndRender();
-        expect(screen.queryByText('More content is coming soon!'));
+        expect(screen.queryByText('More content is coming soon!')).toBeInTheDocument();
       });
     });
   });

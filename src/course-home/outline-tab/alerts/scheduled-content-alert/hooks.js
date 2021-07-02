@@ -6,9 +6,10 @@ import { useModel } from '../../../../generic/model-store';
 const ScheduledContentAlert = React.lazy(() => import('./ScheduledCotentAlert'));
 
 const useScheduledContentAlert = (courseId) => {
-  const { hasScheduledContent } = useModel('outline', courseId);
+  const { courseBlocks: { courses } } = useModel('outline', courseId);
+  const hasScheduledContent = !!Object.values(courses).find(course => course.hasScheduledContent === true);
   const { isEnrolled } = useModel('courseHomeMeta', courseId);
-  useAlert(hasScheduledContent && isEnrolled, {
+  useAlert( hasScheduledContent && isEnrolled, {
     code: 'ScheduledContentAlert',
     topic: 'outline-course-alerts',
   });

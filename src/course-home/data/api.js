@@ -116,6 +116,7 @@ export function normalizeOutlineBlocks(courseId, blocks) {
           id: courseId,
           title: block.display_name,
           sectionIds: block.children || [],
+          hasScheduledContent: block.has_scheduled_content,
         };
         break;
 
