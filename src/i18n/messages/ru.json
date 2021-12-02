@@ -11,7 +11,6 @@
   "learning.outline.setWeeklyGoal": "Установите цель обучения на неделю",
   "learning.outline.setWeeklyGoalDetail": "Постановка цели мотивирует вас закончить курс. Вы всегда можете изменить ее позже.",
   "learning.outline.startBlurb": "Начните свой курс сегодня",
-
   "learning.outline.resumeBlurb": "Продолжайте с того места, где остановились",
   "learning.outline.alert.start.short": "Курс начинается {timeRemaining} в {courseStartTime}.",
   "learning.outline.alert.end.long": "Этот курс завершается {timeRemaining} в {courseEndDate}.",
@@ -74,7 +73,6 @@
   "learning.outline.goalButton.intense.title": "Интенсивный",
   "learning.outline.goalButton.regular.text": "3 дня в неделю",
   "learning.outline.goalButton.regular.title": "Регулярный",
-
   "learning.outline.handouts": "Пособия по курсу",
   "learning.outline.incompleteAssignment": "Незавершено",
   "learning.outline.incompleteSection": "Незавершенный раздел",
@@ -430,5 +428,5 @@
   "learning.generic.upsell.fullAccessBullet.fullAccess": "Полный доступ",
   "learning.generic.upsell.fullAccessBullet": "{fullAccessInBoldText} к содержанию и материалам курса, даже после его окончания",
   "learning.generic.upsell.supportMissionBullet.mission": "миссия",
-  "learning.generic.upsell.supportMissionBullet": "Поддержите нашу {миссиюInBoldText}"
+  "learning.generic.upsell.supportMissionBullet": "Поддержите нашу {missionInBoldText}"
 }
