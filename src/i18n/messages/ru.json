@@ -402,7 +402,7 @@
   "masquerade-widget.userName.error.generic": "Произошла ошибка; пожалуйста, попробуйте еще раз.",
   "masquerade-widget.userName.input.placeholder": "Имя пользователя или электронная почта",
   "masquerade-widget.userName.input.label": "Замаскироваться под этого пользователя",
-  "masquerade-widget.masquerade.dropdown.label": "Просмотреть этот курс как:",
+  "masquerade-widget.masquerade.dropdown.label": "Просмотреть этот курс как",
   "masquerade-widget.masquerade.role.default": "Сотрудник",
   "masquerade-widget.masquerade.role.student": "Конкретный студент...",
   "masquerade-widget.masquerade.role.learner": "Обучающийся",

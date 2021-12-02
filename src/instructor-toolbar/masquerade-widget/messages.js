@@ -18,7 +18,7 @@ const messages = defineMessages({
   },
   masqueradeDropDownLable: {
     id: 'masquerade-widget.masquerade.dropdown.label',
-    defaultMessage: 'View this course as:',
+    defaultMessage: 'View this course as',
     description: 'Label for the masquerade dropdown',
   },
   masqueradeRoleDefault: {
