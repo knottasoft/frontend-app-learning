@@ -402,6 +402,10 @@
   "masquerade-widget.userName.error.generic": "Произошла ошибка; пожалуйста, попробуйте еще раз.",
   "masquerade-widget.userName.input.placeholder": "Имя пользователя или электронная почта",
   "masquerade-widget.userName.input.label": "Замаскироваться под этого пользователя",
+  "masquerade-widget.masquerade.dropdown.label": "Просмотреть этот курс как:",
+  "masquerade-widget.masquerade.role.default": "Сотрудник",
+  "masquerade-widget.masquerade.role.student": "Конкретный студент...",
+  "masquerade-widget.masquerade.role.learner": "Обучающийся",
   "learning.effortEstimation.combinedEstimate": "{minutes} + {activities}",
   "learning.effortEstimation.activities": "{activityCount, plural, one {# activity} other {# activities}}",
   "learning.effortEstimation.minutesAbbreviated": "{minuteCount, plural, one {# min} other {# min}}",
@@ -429,4 +433,5 @@
   "learning.generic.upsell.fullAccessBullet": "{fullAccessInBoldText} к содержанию и материалам курса, даже после его окончания",
   "learning.generic.upsell.supportMissionBullet.mission": "миссия",
   "learning.generic.upsell.supportMissionBullet": "Поддержите нашу {missionInBoldText}"
+
 }

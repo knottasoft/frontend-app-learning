@@ -21,7 +21,7 @@ class MasqueradeWidget extends Component {
     this.courseId = props.courseId;
     this.state = {
       autoFocus: false,
-      masquerade: 'Staff',
+      masquerade: this.props.intl.formatMessage(messages.masqueradeRoleDefault),
       options: [],
       shouldShowUserNameInput: false,
       masqueradeUsername: null,
@@ -36,14 +36,14 @@ class MasqueradeWidget extends Component {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
         // eslint-disable-next-line no-console
-        this.onError('Unable to get masquerade options');
+        this.onError(this.props.intl.formatMessage(messages.masqueradeError));
       }
     }).catch((response) => {
       // There's not much we can do to recover;
       // if we can't fetch masquerade options,
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
-      console.error('Unable to get masquerade options', response);
+      console.error(this.props.intl.formatMessage(messages.masqueradeError), response);
     });
   }
 
@@ -71,7 +71,7 @@ class MasqueradeWidget extends Component {
   toggle(show) {
     this.setState(prevState => ({
       autoFocus: true,
-      masquerade: 'Specific Student...',
+      masquerade: this.props.intl.formatMessage(messages.masqueradeRoleStudent),
       shouldShowUserNameInput: show === undefined ? !prevState.shouldShowUserNameInput : show,
     }));
   }
@@ -96,14 +96,14 @@ class MasqueradeWidget extends Component {
     if (active.userName) {
       this.setState({
         autoFocus: false,
-        masquerade: 'Specific Student...',
+        masquerade: this.props.intl.formatMessage(messages.masqueradeRoleStudent),
         masqueradeUsername: active.userName,
         shouldShowUserNameInput: true,
       });
     } else if (active.groupName) {
       this.setState({ masquerade: active.groupName });
     } else if (active.role === 'student') {
-      this.setState({ masquerade: 'Learner' });
+      this.setState({ masquerade: this.props.intl.formatMessage(messages.masqueradeRoleLearner) });
     }
     return options;
   }
@@ -117,10 +117,11 @@ class MasqueradeWidget extends Component {
       masqueradeUsername,
     } = this.state;
     const specificLearnerInputText = this.props.intl.formatMessage(messages.placeholder);
+    const masqueradeDropDownLable = this.props.intl.formatMessage(messages.masqueradeDropDownLable);
     return (
       <div className="flex-grow-1">
         <div className="row">
-          <span className="col-auto col-form-label pl-3">View this course as:</span>
+          <span className="col-auto col-form-label pl-3">{`${masqueradeDropDownLable}:`}</span>
           <Dropdown className="flex-shrink-1 mx-1">
             <Dropdown.Toggle variant="inverse-outline-primary">
               {masquerade}
