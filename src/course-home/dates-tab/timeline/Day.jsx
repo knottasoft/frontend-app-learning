@@ -86,7 +86,7 @@ function Day({
                   <span className="font-weight-bold">{item.assignmentType && `${item.assignmentType}: `}{title}</span>
                   {showDueDateTime && (
                     <span>
-                      <span className="mx-1">due</span>
+                      <span className="mx-1">за</span>
                       <FormattedTime
                         value={date}
                         timeZoneName="short"
@@ -111,8 +111,8 @@ function Day({
               { mmp2pOverride
                 ? (
                   <div className="small mb-2">
-                    You are still eligible to upgrade to a Verified Certificate!
-                    &nbsp; Unlock full course access and highlight the knowledge you&apos;ll gain.
+                    Вы все еще имеете право перейти на сертификат Verified!
+                    &nbsp; Разблокируйте полный доступ к курсу и подчеркните знания, которые вы&apos; получите.
                   </div>
                 )
                 : (item.description && <div className="small mb-2">{item.description}</div>)}

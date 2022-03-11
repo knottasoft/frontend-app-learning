@@ -64,7 +64,7 @@ function AccessExpirationAlert({ intl, payload }) {
         <br />
         <FormattedMessage
           id="learning.accessExpiration.deadline"
-          defaultMessage="Upgrade by {date} to get unlimited access to the course as long as it exists on the site."
+          defaultMessage="Обновите курс до {date}, чтобы получить неограниченный доступ к нему до тех пор, пока он существует на сайте."
           values={{
             date: (
               <FormattedDate
@@ -96,7 +96,7 @@ function AccessExpirationAlert({ intl, payload }) {
       <span className="font-weight-bold">
         <FormattedMessage
           id="learning.accessExpiration.header"
-          defaultMessage="Audit Access Expires {date}"
+          defaultMessage="Дата истечения срока действия доступа {date}"
           values={{
             date: (
               <FormattedDate
@@ -114,7 +114,7 @@ function AccessExpirationAlert({ intl, payload }) {
       <br />
       <FormattedMessage
         id="learning.accessExpiration.body"
-        defaultMessage="You lose all access to this course, including your progress, on {date}."
+        defaultMessage="Вы потеряете весь доступ к этому курсу, включая ваш прогресс после {date}."
         values={{
           date: (
             <FormattedDate

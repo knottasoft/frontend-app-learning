@@ -342,7 +342,19 @@ export async function getOutlineTabData(courseId) {
   const courseGoals = camelCaseObject(data.course_goals);
   const courseTools = camelCaseObject(data.course_tools);
   const datesBannerInfo = camelCaseObject(data.dates_banner_info);
-  const datesWidget = camelCaseObject(data.dates_widget);
+  let datesWidget = camelCaseObject(data.dates_widget);
+
+  if(datesWidget['courseDateBlocks'] !== undefined){
+    datesWidget.course_date_blocks.map(block => {
+      if(block.date_type === 'course-end-date'){
+        block.title = 'Окончание курса'
+      }
+      if(block.date_type === 'course-start-date'){
+        block.title = 'Начало курса'
+      }
+    })
+  }
+
   const enableProctoredExams = data.enable_proctored_exams;
   const enrollAlert = camelCaseObject(data.enroll_alert);
   const enrollmentMode = data.enrollment_mode;

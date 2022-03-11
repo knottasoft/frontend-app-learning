@@ -11,7 +11,7 @@ import {
 } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import truncate from 'truncate-html';
-import { useModel } from '../../../generic/model-store/hooks';
+import { useModel } from '../../../generic/model-store';
 import fetchCourseRecommendations from './data/thunks';
 import { FAILED, LOADED, LOADING } from './data/slice';
 import CatalogSuggestion from './CatalogSuggestion';
@@ -184,7 +184,7 @@ function CourseRecommendations({ intl, variant }) {
           isPaginated
           itemCount={recommendations.length}
           data={recommendationData}
-          columns={[{ Header: 'Title', accessor: 'title' }]}
+          columns={[{ Header: 'Название', accessor: 'title' }]}
           initialState={{
             pageSize: 3,
             pageIndex: 0,

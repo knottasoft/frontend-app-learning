@@ -15,7 +15,7 @@ function AccessExpirationMasqueradeBanner({ payload }) {
     <PageBanner variant="warning">
       <FormattedMessage
         id="instructorToolbar.pageBanner.courseHasExpired"
-        defaultMessage="This learner no longer has access to this course. Their access expired on {date}."
+        defaultMessage="У этого учащегося больше нет доступа к этому курсу. Его доступ истек {дата}."
         values={{
           date: <FormattedDate
             key="instructorToolbar.pageBanner.accessExpirationDate"

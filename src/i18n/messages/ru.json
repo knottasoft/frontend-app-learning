@@ -13,6 +13,7 @@
   "learning.outline.startBlurb": "Начните свой курс сегодня",
   "learning.outline.resumeBlurb": "Продолжайте с того места, где остановились",
   "learning.outline.alert.start.short": "Курс начинается {timeRemaining} в {courseStartTime}.",
+  "learning.outline.alert.start.long": "Курс начинается {timeRemaining} - {courseStartDate}.",
   "learning.outline.alert.end.long": "Этот курс завершается {timeRemaining} в {courseEndDate}.",
   "learning.outline.alert.end.calendar": "Не забудьте добавить напоминание в календарь!",
   "instructorToolbar.pageBanner.courseHasNotStarted": "У этого учащегося еще нет доступа к этому курсу. Курс начинается с {date}.",
