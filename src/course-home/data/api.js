@@ -345,11 +345,11 @@ export async function getOutlineTabData(courseId) {
   let datesWidget = camelCaseObject(data.dates_widget);
 
   if(datesWidget['courseDateBlocks'] !== undefined){
-    datesWidget.course_date_blocks.map(block => {
-      if(block.date_type === 'course-end-date'){
+    datesWidget.courseDateBlocks.map(block => {
+      if(block.dateType === 'course-end-date'){
         block.title = 'Окончание курса'
       }
-      if(block.date_type === 'course-start-date'){
+      if(block.dateType === 'course-start-date'){
         block.title = 'Начало курса'
       }
     })
