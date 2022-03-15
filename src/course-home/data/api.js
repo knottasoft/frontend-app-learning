@@ -77,7 +77,7 @@ function normalizeAssignmentPolicies(assignmentPolicies, sectionScores) {
     );
 
     if(assignment.type === 'Homework'){
-      assignment.type = 'Задания'
+      assignment.type = 'Задание'
       assignment.shortLabel = 'ДЗ'
 
     }
