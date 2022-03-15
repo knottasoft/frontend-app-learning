@@ -40,22 +40,19 @@ export const BlockModal = () => (
     <div className="mmp2p-modal-dialog modal-content modal-xl">
       <div className="mmp2p-block-modal-wrapper">
         <h3>
-          Deadline to access full course has passed
+          Крайний срок доступа к полному курсу истек
         </h3>
         <div className="subheader">
-          What does the Verified Track get you?
+          Что дает вам программа Verified Track?
         </div>
 
         <div>
           <BulletList>
-            Earn a verified certificate of completion to showcase on your resumé
+            Получите подтвержденный сертификат о прохождении курса, который можно включить в свое резюме
           </BulletList>
           <BulletList>
-            Unlock unlimited access to all course content and activities,
-            &nbsp;including graded assignments, even after the course ends.
-          </BulletList>
-          <BulletList>
-            Support our mission at edx
+            Разблокируйте неограниченный доступ ко всем материалам курса и занятиям,
+            &nbsp;включая оцененные задания, даже после окончания курса.
           </BulletList>
         </div>
 
@@ -64,11 +61,11 @@ export const BlockModal = () => (
         <Button
           id="mmp2p-modal-explore-btn"
           variant="brand"
-          href="https://www.edx.org/search"
+          href="https://lms.copp26.ru/courses"
           data-ol-has-click-handler=""
           style={{ fontSize: '1em', fontWeight: 600 }}
         >
-          Explore more courses
+          Изучить другие курсы
         </Button>
       </div>
     </div>

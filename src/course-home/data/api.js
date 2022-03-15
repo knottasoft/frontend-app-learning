@@ -76,6 +76,26 @@ function normalizeAssignmentPolicies(assignmentPolicies, sectionScores) {
       assignment.numDroppable,
     );
 
+    if(assignment.type === 'Homework'){
+      assignment.type = 'Задания'
+      assignment.shortLabel = 'ДЗ'
+
+    }
+
+    if(assignment.type === 'Lab'){
+      assignment.type = 'Лабараторная'
+      assignment.shortLabel = 'Лаб'
+    }
+
+    if(assignment.type === 'Midterm Exam'){
+      assignment.type = 'Промежуточный экзамен'
+      assignment.shortLabel = 'Промежуточный'
+    }
+
+    if(assignment.type === 'Final Exam'){
+      assignment.type = 'Заключительный экзамен'
+      assignment.shortLabel = 'Заключительный'
+    }
     return {
       averageGrade,
       numDroppable: assignment.numDroppable,
@@ -348,6 +368,7 @@ export async function getOutlineTabData(courseId) {
     datesWidget['courseDateBlocks'].map(block => {
       if(block.dateType === 'course-end-date'){
         block.title = 'Окончание курса'
+        block.description = 'После окончания курса его содержание будет заархивировано и перестанет быть активным.'
       }
       if(block.dateType === 'course-start-date'){
         block.title = 'Начало курса'
