@@ -38,7 +38,7 @@ function AccessExpirationAlertMMP2P({ payload }) {
   if (upgradeDeadline && upgradeUrl) {
     deadlineMessage = (
       <>
-        Upgrade by {formatDate(upgradeDeadline, 'upgradeDesc')} to unlock unlimited access to all course activities, including graded assignments.
+        Обновите курс до {formatDate(upgradeDeadline, 'upgradeDesc')}, чтобы получить неограниченный доступ ко всем занятиям курса, включая оцениваемые задания.
         &nbsp;
         <Hyperlink
           className="font-weight-bold"
@@ -54,13 +54,12 @@ function AccessExpirationAlertMMP2P({ payload }) {
   return (
     <Alert variant="info" icon={Info}>
       <span className="font-weight-bold">
-        Unlock full course content by {formatDate(upgradeDeadline, 'upgradeTitle')}
+        Разблокируйте полное содержание курса к {formatDate(upgradeDeadline, 'upgradeTitle')}
       </span>
       <br />
       {deadlineMessage}
       <br />
-      You lose all access to the first two weeks of scheduled content
-      on {formatDate(expirationDate, 'expirationBody')}.
+        You lose all access to the first two weeks of scheduled content on {formatDate(expirationDate, 'expirationBody')}.
     </Alert>
   );
 }

@@ -60,12 +60,12 @@ export default function DateSummary({
         <div className="row ml-4 pr-2">
           <div className="date-summary-text">
             <div className="font-weight-bold mt-2">
-              Last chance to upgrade
+              Последний шанс повысить класс
             </div>
           </div>
           <div className="date-summary-text mt-1">
-            You are still eligible to upgrade to a Verified Certificate!
-            &nbsp; Unlock full course access and highlight the knowledge you&apos;ll gain.
+            Вы все еще имеете право перейти на сертификат Verified!
+            Разблокируйте полный доступ к курсу и подчеркните знания, которые вы получите.
           </div>
         </div>
       ) : (
